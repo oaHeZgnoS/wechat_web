@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_YELLOW}
+ _    _ _____   _____  _   _   ___ _____ 
+| |  | |  ___| /  __ \| | | | / _ \_   _|
+| |  | | |__   | /  \/| |_| |/ /_\ \| |  
+| |/\| |  __|  | |    |  _  ||  _  || |  
+\  /\  / |___  | \__/\| | | || | | || |  
+ \/  \/\____/   \____/\_| |_/\_| |_/\_/ 
+WeChat version: ${application.version}
+Spring Boot version: ${spring-boot.version}
