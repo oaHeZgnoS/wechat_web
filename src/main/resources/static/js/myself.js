@@ -197,3 +197,45 @@ function get(url, datat, callback) {
         }
     });
 }
+/**
+ * h5通知提醒
+ * @param fromId 消息来源人的id
+ * @param msg 接收到的消息文本
+ */
+function notifyNewMsg(fromId, msg) {
+	var fromUser = window["userArr"].filter(function(u) {
+		if (u.id == fromId) {
+			return true;
+		}
+	})[0];
+	var notifyStr = "收到来自【" + fromUser["username"] + "】的新消息！\n" + msg;
+	Notification.requestPermission(function (permission) {  
+        if (permission == "granted") {
+            var notification = new Notification("WeChat新消息", {  
+                dir: "auto",
+                lang: "zh-CN",
+                tag: fromId,
+                icon:'favicon.ico',
+                renotify: false,
+                body: notifyStr
+            });
+            // 事件庀点击事件监听
+            notification.onclick = function () {
+                console.log('onclick');
+                // window.location.href = "http://www.baidu.com";
+            };
+            // 监听显示事件
+            notification.onshow = function () {
+                console.log('onshow');
+            };
+            // 监听错误事件
+            notification.onerror = function () {
+                console.log('onerror');
+            };
+            // 监听关闭事件
+            notification.onclose = function () {
+                console.log('onclose');
+            };   
+        }
+    });
+}

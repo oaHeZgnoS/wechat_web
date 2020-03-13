@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="WeChat">
         <meta name="author" content="SongZehao">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WeChat</title>
         <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -12,7 +13,7 @@
 		<!-- jQuery  -->
         <script src="/js/jquery.min.js"></script>
 		<!-- myself -->
-		<script src="/js/myself.js?v=20200310"></script>
+		<script src="/js/myself.js?v=20200313"></script>
 
         <!-- 百度统计 -->
         <script>
@@ -73,7 +74,7 @@
 		<script type="text/javascript">
 			var socket;
 			var currentUser;
-			var userArr;
+			window["userArr"] = [];
 			//心跳检测
 			var heartCheck = {
 				timeout: 30000,
@@ -143,7 +144,7 @@
 			                $(".msghisDiv .his_" + fromId).show();
 			                $(".userRow").removeClass("activeFriend");
 			                $(".userRow[data-id=" + fromId + "]").addClass("activeFriend");
-							var fromUser = userArr.filter(function(u) {
+							var fromUser = window["userArr"].filter(function(u) {
 								if (u.id == fromId) {
 									return true;
 								}
@@ -155,6 +156,7 @@
 								$(".toFriend").attr("toId", data["toId"]);
 			                } else {
 			                	$(".toFriend").attr("toId", fromId);
+			                	notifyNewMsg(fromId, message);
 			                }
 			                $(".chatarea").show();
 		                }
@@ -186,7 +188,7 @@
 				// 获取所有用户信息
 			 	get("/users", "json", function(users) {
 			 		console.log(users);
-			 		userArr = users;
+			 		window["userArr"] = users;
 		 			$(".friendlist").empty();
 			 		for (let i = 0; i < users.length; i++) {
 			 			let id = users[i].id;
@@ -240,7 +242,6 @@
 		            socket.send(JSON.stringify(data));
 		        }
 			}
-
 		</script>
 
     </body>
