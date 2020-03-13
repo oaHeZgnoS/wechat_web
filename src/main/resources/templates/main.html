@@ -5,9 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="WeChat">
         <meta name="author" content="SongZehao">
-
-        <link rel="shortcut icon" href="/assets/images/favicon.ico">
-
         <title>WeChat</title>
         <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -68,7 +65,7 @@
 		</div>
 		<div class="chatarea">
 			<div class="toFriendDiv">与<span class="toFriend"></span>对话中：</div>
-			<textarea class="msgarea"></textarea><br>
+			<textarea class="msgarea form-control"></textarea><br>
 			<button type="button" onclick="sendMsg()" class="btn btn-info waves-effect waves-light">发送</button>
 			<div class="msghisDiv"></div>
 		</div>
@@ -155,7 +152,7 @@
 							let account = fromUser["account"];
 			                $(".toFriend").text(username + account);
 			                if (state == "fail") {
-								$(".toFriend").attr("toId", toId);
+								$(".toFriend").attr("toId", data["toId"]);
 			                } else {
 			                	$(".toFriend").attr("toId", fromId);
 			                }
@@ -196,12 +193,12 @@
 			 			let username = users[i].username;
 			 			let account = users[i].account;
 			 			if (currentUser.id != id) {
-					    	$(".friendlist").append('<div class="userRow" data-id="' + id + '"><span>' + username + '</span><span>(' + account + ')</span></div>');
+					    	$(".friendlist").append('<div class="userRow form-control" data-id="' + id + '"><span>' + username + '</span><span>(' + account + ')</span></div>');
 			 			}
 			 		}
 			 		$(".userRow").on("dblclick", function(e) {
 			 			let node = $(e.target)[0];
-			 			$(".msgarea").empty();
+			 			$(".msgarea").val("");
 			 			// 期待双击div.userRow,但实际上有可能双击了它的2个span子节点,所以需获取到div.userRow
 			 			let targetNode = null;
 			 			if ($(node).hasClass("userRow")) {
