@@ -1,4 +1,4 @@
-package com.szh.wechat.controller;
+package com.szh.wechat.ws;
 
 import java.util.List;
 import java.util.Map;
