@@ -121,8 +121,8 @@ public class LoginController {
 	@RequestMapping(value = "/checkcode", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
 	public boolean checkcode(HttpServletRequest request) {
 		String captchaId = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-		String parameter = request.getParameter("veritycode");
-		System.out.println("Session  vrifyCode " + captchaId + " form veritycode " + parameter);
+		String parameter = request.getParameter("verifycode");
+		System.out.println("Session verifycode " + captchaId + " form verifycode " + parameter);
 		if (!captchaId.equals(parameter)) {
 			log.debug("验证码错误");
 			return false;
